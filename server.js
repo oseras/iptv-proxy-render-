@@ -47,7 +47,10 @@ app.get('/msx.m3u', async (req, res) => {
   } catch (e) {
     res.status(500).send(`#EXTM3U\n# HATA: ${e.message}`);
   }
-  app.get('/', (req, res) => {
+});
+
+// 🔧 DÜZGÜN ŞEKİLDE / ROUTE EKLENDİ
+app.get('/', (req, res) => {
   res.send(`
     <h2>🎉 IPTV Proxy Servisi Aktif</h2>
     <ul>
@@ -57,6 +60,5 @@ app.get('/msx.m3u', async (req, res) => {
     <p>Geliştirici: oseras</p>
   `);
 });
-
 
 app.listen(PORT, () => console.log(`MSX uyumlu proxy aktif: http://localhost:${PORT}/msx.m3u`));
