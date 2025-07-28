@@ -52,13 +52,18 @@ app.get('/msx.m3u', async (req, res) => {
 app.get('/full.m3u', async (req, res) => {
   try {
     const [orjRes, gitRes] = await Promise.all([
-      fetch(`${LINK_MPEGTS}&_=${Date.now()}`),
+      fetch(`${LINK_MPEGTS}&_=${Date.now()}`, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0',
+          'Referer': 'http://cavuldur.live'
+        }
+      }),
       fetch(GITHUB_LINK)
     ]);
 
     const [orjText, gitText] = await Promise.all([
       orjRes.text(),
-      gitRes.text() // ✅ düzeltildi
+      gitRes.text()
     ]);
 
     const sadeOrj = sadeM3U(orjText);
