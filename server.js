@@ -58,7 +58,7 @@ app.get('/full.m3u', async (req, res) => {
 
     const [orjText, gitText] = await Promise.all([
       orjRes.text(),
-      gitText.text()
+      gitRes.text() // ✅ düzeltildi
     ]);
 
     const sadeOrj = sadeM3U(orjText);
